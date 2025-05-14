@@ -62,6 +62,21 @@ namespace GameForum_DotNet8.Controllers
             return Ok(post.Comments);
         }
 
+        [HttpPost("{postId}/comments")]
+        public async Task<ActionResult<List<Comment>>> AddComment(int postId, Comment comment)
+        {
+            var post = await _context.Posts.FindAsync(postId);
+            if (post == null) return NotFound("Post not found.");
+
+            comment.PostId = postId;
+            comment.CreatedAt = DateTime.UtcNow;
+
+            _context.Comments.Add(comment);
+            await _context.SaveChangesAsync();
+
+            return Ok(comment);
+        }
+
 
         // ********************** Comment CRUD Operations ********************** \\
     }
