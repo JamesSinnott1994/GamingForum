@@ -52,6 +52,16 @@ namespace GameForum_DotNet8.Controllers
 
         // ********************** Comment CRUD Operations ********************** \\
 
+        // Get all comments associated with a post
+        [HttpGet("{postId}/comments")]
+        public async Task<ActionResult<List<Comment>>> GetComments(int postId)
+        {
+            var post = await _context.Posts.Include(p => p.Comments)
+                .FirstOrDefaultAsync(p => p.Id == postId);
+            if (post == null) return NotFound("Post not found.");
+            return Ok(post.Comments);
+        }
+
 
         // ********************** Comment CRUD Operations ********************** \\
     }

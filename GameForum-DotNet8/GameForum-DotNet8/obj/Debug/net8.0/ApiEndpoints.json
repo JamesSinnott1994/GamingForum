@@ -47,42 +47,16 @@
   },
   {
     "ContainingType": "GameForum_DotNet8.Controllers.GameForumController",
-    "Method": "UpdatePost",
-    "RelativePath": "api/GameForum",
-    "HttpMethod": "PUT",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "updatedPost",
-        "Type": "GameForum_DotNet8.Entities.Post",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": [
-      {
-        "Type": "System.Collections.Generic.List\u00601[[GameForum_DotNet8.Entities.Post, GameForum-DotNet8, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      }
-    ]
-  },
-  {
-    "ContainingType": "GameForum_DotNet8.Controllers.GameForumController",
-    "Method": "DeletePost",
-    "RelativePath": "api/GameForum",
-    "HttpMethod": "DELETE",
+    "Method": "GetPost",
+    "RelativePath": "api/GameForum/{id}",
+    "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
         "Name": "id",
         "Type": "System.Int32",
-        "IsRequired": false
+        "IsRequired": true
       }
     ],
     "ReturnTypes": [
@@ -100,7 +74,7 @@
   {
     "ContainingType": "GameForum_DotNet8.Controllers.GameForumController",
     "Method": "GetComments",
-    "RelativePath": "api/GameForum",
+    "RelativePath": "api/GameForum/{postId}/comments",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -108,38 +82,12 @@
       {
         "Name": "postId",
         "Type": "System.Int32",
-        "IsRequired": false
-      }
-    ],
-    "ReturnTypes": [
-      {
-        "Type": "System.Collections.Generic.List\u00601[[GameForum_DotNet8.Entities.Comment, GameForum-DotNet8, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      }
-    ]
-  },
-  {
-    "ContainingType": "GameForum_DotNet8.Controllers.GameForumController",
-    "Method": "GetPost",
-    "RelativePath": "api/GameForum/{id}",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "id",
-        "Type": "System.Int32",
         "IsRequired": true
       }
     ],
     "ReturnTypes": [
       {
-        "Type": "System.Collections.Generic.List\u00601[[GameForum_DotNet8.Entities.Post, GameForum-DotNet8, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "Type": "System.Collections.Generic.List\u00601[[GameForum_DotNet8.Entities.Comment, GameForum-DotNet8, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "MediaTypes": [
           "text/plain",
           "application/json",
