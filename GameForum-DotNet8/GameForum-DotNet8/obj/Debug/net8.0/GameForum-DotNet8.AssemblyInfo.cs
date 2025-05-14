@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("GameForum-DotNet8")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e5170f445ed3e52991ff895811ecb3151727b0ff")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d11c5c902f8612ed874ac75ee2ba697ad1284653")]
 [assembly: System.Reflection.AssemblyProductAttribute("GameForum-DotNet8")]
 [assembly: System.Reflection.AssemblyTitleAttribute("GameForum-DotNet8")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

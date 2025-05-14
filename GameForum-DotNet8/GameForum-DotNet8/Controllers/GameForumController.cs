@@ -45,5 +45,20 @@ namespace GameForum_DotNet8.Controllers
             await _context.SaveChangesAsync();
             return Ok(await _context.Posts.ToListAsync()); // Returns status code 200
         }
+
+        [HttpPut]
+        public async Task<ActionResult<List<Post>>> UpdatePost(Post updatedPost)
+        {
+            var dbPost = await _context.Posts.FindAsync(updatedPost.Id);
+            if (dbPost is null)
+                return BadRequest("Post not found.");
+
+            dbPost.Title = updatedPost.Title;
+            dbPost.Content = updatedPost.Content;
+
+            await _context.SaveChangesAsync();
+
+            return Ok(await _context.Posts.ToListAsync()); // Returns status code 200
+        }
     }
 }
