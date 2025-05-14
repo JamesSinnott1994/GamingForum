@@ -60,5 +60,18 @@ namespace GameForum_DotNet8.Controllers
 
             return Ok(await _context.Posts.ToListAsync()); // Returns status code 200
         }
+
+        [HttpDelete]
+        public async Task<ActionResult<List<Post>>> DeletePost(int id)
+        {
+            var dbPost = await _context.Posts.FindAsync(id);
+            if (dbPost is null)
+                return BadRequest("Post not found.");
+
+            _context.Posts.Remove(dbPost);
+            await _context.SaveChangesAsync();
+
+            return Ok(await _context.Posts.ToListAsync()); // Returns status code 200
+        }
     }
 }
