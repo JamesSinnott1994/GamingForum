@@ -37,5 +37,13 @@ namespace GameForum_DotNet8.Controllers
                 return  BadRequest("Post not found.");
             return Ok(post); // Returns status code 200
         }
+
+        [HttpPost]
+        public async Task<ActionResult<List<Post>>> AddPost(Post post)
+        {
+            _context.Posts.Add(post);
+            await _context.SaveChangesAsync();
+            return Ok(await _context.Posts.ToListAsync()); // Returns status code 200
+        }
     }
 }
