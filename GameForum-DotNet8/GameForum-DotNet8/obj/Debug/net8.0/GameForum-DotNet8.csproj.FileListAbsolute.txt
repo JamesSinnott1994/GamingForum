@@ -139,3 +139,4 @@ C:\Users\HP\Desktop\LetsGetChecked\Take home Task\GamingForum\GameForum-DotNet8\
 C:\Users\HP\Desktop\LetsGetChecked\Take home Task\GamingForum\GameForum-DotNet8\GameForum-DotNet8\obj\Debug\net8.0\GameForum-DotNet8.pdb
 C:\Users\HP\Desktop\LetsGetChecked\Take home Task\GamingForum\GameForum-DotNet8\GameForum-DotNet8\obj\Debug\net8.0\GameForum-DotNet8.genruntimeconfig.cache
 C:\Users\HP\Desktop\LetsGetChecked\Take home Task\GamingForum\GameForum-DotNet8\GameForum-DotNet8\obj\Debug\net8.0\ref\GameForum-DotNet8.dll
+C:\Users\HP\Desktop\LetsGetChecked\Take home Task\GamingForum\GameForum-DotNet8\GameForum-DotNet8\bin\Debug\net8.0\Microsoft.EntityFrameworkCore.InMemory.dll

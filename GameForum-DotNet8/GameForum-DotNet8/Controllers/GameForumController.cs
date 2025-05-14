@@ -52,7 +52,6 @@ namespace GameForum_DotNet8.Controllers
 
         // ********************** Comment CRUD Operations ********************** \\
 
-        // Get all comments associated with a post
         [HttpGet("{postId}/comments")]
         public async Task<ActionResult<List<Comment>>> GetComments(int postId)
         {
