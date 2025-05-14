@@ -47,27 +47,12 @@ namespace GameForum_DotNet8.Controllers
             return Ok(await _context.Posts.ToListAsync());
         }
 
-        [HttpPut]
-        public async Task<ActionResult<List<Post>>> UpdatePost(Post updatedPost)
-        {
-            var dbPost = await _context.Posts.FindAsync(updatedPost.Id);
-            if (dbPost is null) return BadRequest("Post not found.");
-            dbPost.Title = updatedPost.Title;
-            dbPost.Content = updatedPost.Content;
-            await _context.SaveChangesAsync();
-            return Ok(await _context.Posts.ToListAsync());
-        }
-
-        [HttpDelete]
-        public async Task<ActionResult<List<Post>>> DeletePost(int id)
-        {
-            var dbPost = await _context.Posts.FindAsync(id);
-            if (dbPost is null) return BadRequest("Post not found.");
-            _context.Posts.Remove(dbPost);
-            await _context.SaveChangesAsync();
-            return Ok(await _context.Posts.ToListAsync());
-        }
-
         // ********************** Post CRUD Operations ********************** \\
+
+
+        // ********************** Comment CRUD Operations ********************** \\
+
+
+        // ********************** Comment CRUD Operations ********************** \\
     }
 }
