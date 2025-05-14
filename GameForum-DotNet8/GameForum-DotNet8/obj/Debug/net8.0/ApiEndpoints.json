@@ -73,7 +73,7 @@
   },
   {
     "ContainingType": "GameForum_DotNet8.Controllers.GameForumController",
-    "Method": "UpdatePost",
+    "Method": "DeletePost",
     "RelativePath": "api/GameForum",
     "HttpMethod": "DELETE",
     "IsController": true,

@@ -21,21 +21,22 @@ namespace GameForum_DotNet8.Controllers
             _context = context;
         }
 
-        // Test to return a Post
+
+        // ********************** Post CRUD Operations ********************** \\
+
         [HttpGet]
         public async Task<ActionResult<List<Post>>> GetAllPosts() 
         {
             var posts = await _context.Posts.ToListAsync();
-            return Ok(posts); // Returns status code 200
+            return Ok(posts);
         }
 
         [HttpGet("{id}")]
         public async Task<ActionResult<List<Post>>> GetPost(int id)
         {
             var post = await _context.Posts.FindAsync(id);
-            if (post is null)
-                return  BadRequest("Post not found.");
-            return Ok(post); // Returns status code 200
+            if (post is null) return  BadRequest("Post not found.");
+            return Ok(post);
         }
 
         [HttpPost]
@@ -43,35 +44,30 @@ namespace GameForum_DotNet8.Controllers
         {
             _context.Posts.Add(post);
             await _context.SaveChangesAsync();
-            return Ok(await _context.Posts.ToListAsync()); // Returns status code 200
+            return Ok(await _context.Posts.ToListAsync());
         }
 
         [HttpPut]
         public async Task<ActionResult<List<Post>>> UpdatePost(Post updatedPost)
         {
             var dbPost = await _context.Posts.FindAsync(updatedPost.Id);
-            if (dbPost is null)
-                return BadRequest("Post not found.");
-
+            if (dbPost is null) return BadRequest("Post not found.");
             dbPost.Title = updatedPost.Title;
             dbPost.Content = updatedPost.Content;
-
             await _context.SaveChangesAsync();
-
-            return Ok(await _context.Posts.ToListAsync()); // Returns status code 200
+            return Ok(await _context.Posts.ToListAsync());
         }
 
         [HttpDelete]
         public async Task<ActionResult<List<Post>>> DeletePost(int id)
         {
             var dbPost = await _context.Posts.FindAsync(id);
-            if (dbPost is null)
-                return BadRequest("Post not found.");
-
+            if (dbPost is null) return BadRequest("Post not found.");
             _context.Posts.Remove(dbPost);
             await _context.SaveChangesAsync();
-
-            return Ok(await _context.Posts.ToListAsync()); // Returns status code 200
+            return Ok(await _context.Posts.ToListAsync());
         }
+
+        // ********************** Post CRUD Operations ********************** \\
     }
 }
