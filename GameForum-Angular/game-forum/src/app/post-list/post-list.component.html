@@ -1,1 +1,5 @@
-<p>post-list works!</p>
+<ng-container *ngIf="post">
+  <div class="post-card">
+    <h2>{{ post.title }}</h2>
+  </div>
+</ng-container>

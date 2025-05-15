@@ -1,7 +1,6 @@
-<p>Hello!</p>
-
-<ul>
-    <li><app-post-list></app-post-list></li>
-    <li><app-post-list></app-post-list></li>
-    <li><app-post-list></app-post-list></li>
-</ul>
+<main id="homepage">
+    <h1>Posts</h1>
+    <section>
+        <app-post-list *ngFor="let post of posts" [post]="post" />
+    </section>
+</main>
