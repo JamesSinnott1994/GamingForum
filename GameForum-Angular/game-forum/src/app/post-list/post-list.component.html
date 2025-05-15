@@ -1,5 +1,8 @@
 <ng-container *ngIf="post">
   <div class="post-card">
-    <h2>{{ post.title }}</h2>
+    <a [routerLink]="['/post', post.id]">
+      <h2>{{ post.title }}</h2>
+      <p>{{ post.createdAt | date }}</p>
+    </a>
   </div>
 </ng-container>
