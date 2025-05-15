@@ -2,10 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ForumService } from '../services/forum.service';
 import { CommonModule } from '@angular/common';
+import { Comment } from '../models/comment.model';
+import { CommentComponent } from '../comment/comment.component';
 
 @Component({
   selector: 'app-post-page',
-  imports: [],
+  imports: [CommentComponent, CommonModule],
   templateUrl: './post-page.component.html',
   styleUrl: './post-page.component.scss'
 })
