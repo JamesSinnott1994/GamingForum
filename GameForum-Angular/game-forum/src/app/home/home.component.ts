@@ -1,13 +1,10 @@
 import { Component } from '@angular/core';
+import { PostListComponent } from '../post-list/post-list.component';
 
 @Component({
   selector: 'app-home',
-  imports: [],
-  template: `
-    <p>
-      home works!
-    </p>
-  `,
+  imports: [PostListComponent],
+  templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })
 export class HomeComponent {
