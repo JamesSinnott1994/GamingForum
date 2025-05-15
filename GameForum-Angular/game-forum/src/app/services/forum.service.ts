@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Post } from '../models/post.model';
 import { Observable } from 'rxjs';
@@ -23,5 +23,18 @@ export class ForumService {
   getCommentsByPostId(postId: string) {
     return this.http.get<Comment[]>(`${this.apiUrl}/${postId}/comments`);
   }
+
+  createPost(title: string, content: string): Observable<Post[]> {
+
+    console.log("createPost ForumService");
+
+    const postData: Post = {
+      title: title,
+      content: content
+    };
+    console.log(postData);
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    return this.http.post<Post[]>(this.apiUrl, postData, { headers });
+}
 
 }

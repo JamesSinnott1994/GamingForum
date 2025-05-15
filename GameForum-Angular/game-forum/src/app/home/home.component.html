@@ -3,4 +3,20 @@
     <section>
         <app-post-list *ngFor="let post of posts" [post]="post" />
     </section>
+    <section>
+        <h2>Create a new Post</h2>
+        <form [formGroup]="applyForm" (submit)="createPost()">
+            <div class="form-group">
+                <label for="title">Title</label><br>
+                <input type="text" name="title" formControlName="title">
+            </div>
+            <pre></pre>
+            <div class="form-group">
+                <label for="content">Content</label><br>
+                <input type="textarea" name="content" formControlName="content">
+            </div>
+            <pre></pre>
+            <button type="submit" class="primary">Submit Post</button>
+        </form>
+    </section>
 </main>
