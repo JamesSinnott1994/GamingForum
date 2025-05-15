@@ -13,8 +13,15 @@ export class ForumService {
   constructor(private http: HttpClient) {}
 
   getPosts(): Observable<Post[]> {
-    console.log("HERE FORUM");
     return this.http.get<Post[]>(this.apiUrl);
+  }
+
+  getPostById(id: string) {
+    return this.http.get<Post>(`${this.apiUrl}/${id}`);
+  }
+
+  getCommentsByPostId(postId: string) {
+    return this.http.get<Comment[]>(`${this.apiUrl}/${postId}/comments`);
   }
 
 }
