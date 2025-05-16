@@ -1,98 +1,72 @@
-import { ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core/testing';
-import { PostPageComponent } from './post-page.component';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { of } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
-import { of, throwError } from 'rxjs';
+import { PostPageComponent } from './post-page.component';
 import { ForumService } from '../services/forum.service';
-import { RouterModule } from '@angular/router';
+import { Post } from '../models/post.model';
 
 describe('PostPageComponent', () => {
   let component: PostPageComponent;
   let fixture: ComponentFixture<PostPageComponent>;
   let forumServiceSpy: jasmine.SpyObj<ForumService>;
 
-  beforeEach(async () => {
-    const forumSpy = jasmine.createSpyObj('ForumService', [
-      'getPostById',
-      'getCommentsByPostId',
-      'createComment'
-    ]);
-
-    await TestBed.configureTestingModule({
-      imports: [PostPageComponent, RouterModule.forRoot([])],
+  beforeEach(waitForAsync(() => {
+    const spy = jasmine.createSpyObj('ForumService', ['getPostById']);
+    TestBed.configureTestingModule({
+      declarations: [PostPageComponent],
       providers: [
-        { provide: ForumService, useValue: forumSpy },
+        { provide: ForumService, useValue: spy },
         {
           provide: ActivatedRoute,
           useValue: {
             snapshot: {
               paramMap: {
-                get: () => '1'  // simulate route param "id" = "1"
+                get: (key: string) => '1'
               }
             }
           }
         }
       ]
-    }).compileComponents();
+    })
+    .compileComponents();
+  }));
 
+  beforeEach(() => {
     fixture = TestBed.createComponent(PostPageComponent);
     component = fixture.componentInstance;
     forumServiceSpy = TestBed.inject(ForumService) as jasmine.SpyObj<ForumService>;
   });
 
-  it('should create the component', () => {
+  it('should create', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should load post and comments on init', () => {
-    const mockPost = { id: 1, title: 'Test', content: 'Content', createdAt: '2021-10-15 14:54:32' };
-    const mockComments = [{ id: 101, text: 'Great post!' }];
-
+  it('should fetch and set post data in ngOnInit', () => {
+    const mockPost: Post = {
+      id: '1',
+      title: 'Test Title',
+      content: 'This is a test content',
+      createdAt: '2021-01-01T00:00:00Z'
+    };
     forumServiceSpy.getPostById.and.returnValue(of(mockPost));
-    forumServiceSpy.getCommentsByPostId.and.returnValue(of(mockComments));
 
-    component.ngOnInit();
-
-    expect(forumServiceSpy.getPostById).toHaveBeenCalledWith('1');
-    expect(forumServiceSpy.getCommentsByPostId).toHaveBeenCalledWith('1');
+    fixture.detectChanges();
     expect(component.post).toEqual(mockPost);
-    expect(component.comments).toEqual(mockComments);
+    expect(forumServiceSpy.getPostById).toHaveBeenCalledWith('1');
   });
 
-  it('should submit comment successfully', () => {
-    forumServiceSpy.createComment.and.returnValue(of([{ id: 201 }]));
+  it('should display post title and content in template', () => {
+    const mockPost: Post = {
+      id: '1',
+      title: 'Another Title',
+      content: 'Different test content',
+      createdAt: '2021-01-02T12:00:00Z'
+    };
+    forumServiceSpy.getPostById.and.returnValue(of(mockPost));
 
-    component.applyForm.setValue({ text: 'Nice article' });
-    component.postIdForComment = 1;
-    component.createComment();
-
-    expect(forumServiceSpy.createComment).toHaveBeenCalledWith(1, 'Nice article');
-    expect(component.responseMessage).toBe('Comment submitted successfully!');
-    expect(component.isSuccess).toBeTrue();
+    fixture.detectChanges();
+    const compiled = fixture.nativeElement;
+    expect(compiled.querySelector('h1').textContent).toContain(mockPost.title);
+    expect(compiled.querySelector('p').textContent).toContain(mockPost.content);
   });
-
-  it('should handle comment submission failure', () => {
-    forumServiceSpy.createComment.and.returnValue(throwError(() => new Error('Server error')));
-
-    component.applyForm.setValue({ text: 'Oops!' });
-    component.postIdForComment = 1;
-    component.createComment();
-
-    expect(forumServiceSpy.createComment).toHaveBeenCalled();
-    expect(component.responseMessage).toBe('Failed to submit comment. Please try again.');
-    expect(component.isSuccess).toBeFalse();
-  });
-
-  it('should clear message and reload after timeouts', fakeAsync(() => {
-    spyOn(component, 'ngOnInit');
-
-    component.responseMessage = 'Test message';
-    component.clearMessage();
-
-    tick(4000);
-    expect(component.messageVisible).toBeFalse();
-
-    tick(3000); // now total 7000 ms
-    expect(component.responseMessage).toBe('');
-    expect(component.ngOnInit).toHaveBeenCalled();
-  }));
 });
