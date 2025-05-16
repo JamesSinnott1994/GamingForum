@@ -8,12 +8,12 @@
         <form [formGroup]="applyForm" (submit)="createPost()">
             <div class="form-group">
                 <label for="title">Title</label><br>
-                <input type="text" name="title" formControlName="title">
+                <input type="text" id="title" name="title" formControlName="title">
             </div>
             <pre></pre>
             <div class="form-group">
                 <label for="content">Content</label><br>
-                <input type="textarea" name="content" formControlName="content">
+                <input type="textarea" id="content" name="content" formControlName="content">
             </div>
             <pre></pre>
             <div *ngIf="postResponseMessage"

@@ -1,9 +1,9 @@
 <main id="postpage">
     <p><a [routerLink]="['/']">All Posts</a> > Post Details</p>
     <section id="post-content">
-        <h2>{{ post.title }}</h2>
-        <p>{{ post.content }}</p>
-        <p>{{ post.createdAt }}</p>
+        <h2>{{ post?.title }}</h2>
+        <p>{{ post?.content }}</p>
+        <p>{{ post?.createdAt }}</p>
     </section>
     <section>
         <app-comment *ngFor="let comment of comments" [comment]="comment" />
@@ -13,7 +13,7 @@
         <form [formGroup]="applyForm" (submit)="createComment()">
             <div class="form-group">
                 <label for="text">Text</label><br>
-                <textarea name="text" formControlName="text"></textarea>
+                <textarea id="text" name="text" formControlName="text"></textarea>
             </div>
             <pre></pre>
             <div *ngIf="responseMessage"
