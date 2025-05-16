@@ -3,3 +3,27 @@
     width: 80%;
     margin: 0 auto;
 }
+
+.success-message {
+    background-color: #1ba737;
+    border: 1px solid #ddd;
+    color: ddd;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.error-message {
+    background-color: red;
+    border: 1px solid #ddd;
+    color: ddd;
+    margin-top: 10px;
+}
+
+.fade-message {
+  opacity: 1;
+  transition: opacity 2s ease;
+}
+
+.fade-message.hidden {
+  opacity: 0;
+}

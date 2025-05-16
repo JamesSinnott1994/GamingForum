@@ -13,6 +13,9 @@ import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 })
 export class HomeComponent {
   posts: Post[] = [];
+  postResponseMessage: string = '';
+  isSuccess: boolean = false;
+  messageVisible: boolean = true;
 
   applyForm = new FormGroup({
     title: new FormControl(''),
@@ -34,8 +37,30 @@ export class HomeComponent {
       this.applyForm.value.title ?? '',
       this.applyForm.value.content ?? '',
     ).subscribe({
-      next: (res) => console.log('Success:', res),
-      error: (err) => console.error('Error:', err)
-  });;
+    next: (response) => {
+      this.postResponseMessage = 'Post submitted successfully!';
+      this.isSuccess = true;
+      this.applyForm.reset();
+      this.clearMessage();
+    },
+    error: (error) => {
+      this.postResponseMessage = 'Failed to submit post. Please try again.';
+      this.isSuccess = false;
+      this.clearMessage();
+    }
+  });
 }
+
+clearMessage() {
+  this.messageVisible = true;
+
+  setTimeout(() => {
+    this.messageVisible = false;
+  }, 4000); // fade out after 8 seconds
+
+  setTimeout(() => {
+    this.postResponseMessage = '';
+  }, 7000); // fully clear after 10 seconds
+}
+
 }

@@ -35,6 +35,6 @@ export class ForumService {
     console.log(postData);
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     return this.http.post<Object[]>(this.apiUrl, postData, { headers });
-}
+  }
 
 }

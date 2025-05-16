@@ -16,6 +16,15 @@
                 <input type="textarea" name="content" formControlName="content">
             </div>
             <pre></pre>
+            <div *ngIf="postResponseMessage"
+                [ngClass]="{
+                'fade-message': true,
+                'hidden': !messageVisible,
+                'success-message': isSuccess,
+                'error-message': !isSuccess
+                }">
+            {{ postResponseMessage }}
+            </div>
             <button type="submit" class="primary">Submit Post</button>
         </form>
     </section>
