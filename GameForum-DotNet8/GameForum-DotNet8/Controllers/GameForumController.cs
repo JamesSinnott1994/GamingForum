@@ -40,7 +40,6 @@ namespace GameForum_DotNet8.Controllers
         [HttpPost]
         public async Task<ActionResult<List<Post>>> AddPost(Post post)
         {
-            _context.Posts.Add(new Post { Title = "Test", Content = "Works?" });
             _context.Posts.Add(post);
             await _context.SaveChangesAsync();
             return Ok(await _context.Posts.ToListAsync());
