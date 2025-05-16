@@ -8,4 +8,24 @@
     <section>
         <app-comment *ngFor="let comment of comments" [comment]="comment" />
     </section>
+    <section>
+        <h2>Add your own Comment</h2>
+        <form [formGroup]="applyForm" (submit)="createComment()">
+            <div class="form-group">
+                <label for="text">Text</label><br>
+                <textarea name="text" formControlName="text"></textarea>
+            </div>
+            <pre></pre>
+            <div *ngIf="responseMessage"
+                [ngClass]="{
+                'fade-message': true,
+                'hidden': !messageVisible,
+                'success-message': isSuccess,
+                'error-message': !isSuccess
+                }">
+            {{ responseMessage }}
+            </div>
+            <button type="submit" class="primary">Submit Comment</button>
+        </form>
+    </section>
 </main>

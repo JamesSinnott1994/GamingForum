@@ -27,7 +27,6 @@ export class HomeComponent {
   ngOnInit(): void {
     this.forumService.getPosts().subscribe((data) => {
       this.posts = data;
-      console.log(this.posts);
     });
   }
 

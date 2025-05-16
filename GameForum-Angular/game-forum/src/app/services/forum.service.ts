@@ -37,4 +37,18 @@ export class ForumService {
     return this.http.post<Object[]>(this.apiUrl, postData, { headers });
   }
 
+  createComment(postId: number, text: string): Observable<Object[]> {
+
+    console.log("createComment ForumService");
+
+    const commentData: Object = {
+      text: text
+    };
+    console.log(commentData);
+    const url = `${this.apiUrl}/${postId}/comments`;
+    console.log(url);
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    return this.http.post<Object[]>(url, commentData, { headers });
+  }
+
 }

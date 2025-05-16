@@ -66,8 +66,12 @@ namespace GameForum_DotNet8.Controllers
         [HttpPost("{postId}/comments")]
         public async Task<ActionResult<List<Comment>>> AddComment(int postId, Comment comment)
         {
+            Console.WriteLine($"***************UP HERE***************"); // Debug log
+
             var post = await _context.Posts.FindAsync(postId);
             if (post == null) return NotFound("Post not found.");
+
+            Console.WriteLine($"Received Comment: {comment.Text}"); // Debug log
 
             comment.PostId = postId;
             comment.CreatedAt = DateTime.UtcNow;
