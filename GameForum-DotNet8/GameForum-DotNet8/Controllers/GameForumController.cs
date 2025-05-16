@@ -22,8 +22,6 @@ namespace GameForum_DotNet8.Controllers
         }
 
 
-        // ********************** Post CRUD Operations ********************** \\
-
         [HttpGet]
         public async Task<ActionResult<List<Post>>> GetAllPosts() 
         {
@@ -43,16 +41,10 @@ namespace GameForum_DotNet8.Controllers
         public async Task<ActionResult<List<Post>>> AddPost(Post post)
         {
             _context.Posts.Add(new Post { Title = "Test", Content = "Works?" });
-            Console.WriteLine($"Received Post: {post.Title} - {post.Content}"); // Debug log
             _context.Posts.Add(post);
             await _context.SaveChangesAsync();
             return Ok(await _context.Posts.ToListAsync());
         }
-
-        // ********************** Post CRUD Operations ********************** \\
-
-
-        // ********************** Comment CRUD Operations ********************** \\
 
         [HttpGet("{postId}/comments")]
         public async Task<ActionResult<List<Comment>>> GetComments(int postId)
@@ -66,12 +58,8 @@ namespace GameForum_DotNet8.Controllers
         [HttpPost("{postId}/comments")]
         public async Task<ActionResult<List<Comment>>> AddComment(int postId, Comment comment)
         {
-            Console.WriteLine($"***************UP HERE***************"); // Debug log
-
             var post = await _context.Posts.FindAsync(postId);
             if (post == null) return NotFound("Post not found.");
-
-            Console.WriteLine($"Received Comment: {comment.Text}"); // Debug log
 
             comment.PostId = postId;
             comment.CreatedAt = DateTime.UtcNow;
@@ -81,8 +69,5 @@ namespace GameForum_DotNet8.Controllers
 
             return Ok(comment);
         }
-
-
-        // ********************** Comment CRUD Operations ********************** \\
     }
 }
