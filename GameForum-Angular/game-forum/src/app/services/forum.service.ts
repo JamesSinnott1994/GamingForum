@@ -24,17 +24,17 @@ export class ForumService {
     return this.http.get<Comment[]>(`${this.apiUrl}/${postId}/comments`);
   }
 
-  createPost(title: string, content: string): Observable<Post[]> {
+  createPost(title: string, content: string): Observable<Object[]> {
 
     console.log("createPost ForumService");
 
-    const postData: Post = {
+    const postData: Object = {
       title: title,
-      content: content
+      content: content,
     };
     console.log(postData);
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-    return this.http.post<Post[]>(this.apiUrl, postData, { headers });
+    return this.http.post<Object[]>(this.apiUrl, postData, { headers });
 }
 
 }
