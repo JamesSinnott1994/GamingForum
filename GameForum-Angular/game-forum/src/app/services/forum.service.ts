@@ -9,7 +9,7 @@ import { Observable } from 'rxjs';
 export class ForumService {
 
   private apiUrl = 'https://localhost:7251/api/GameForum';
-
+  
   constructor(private http: HttpClient) {}
 
   getPosts(): Observable<Post[]> {
@@ -25,28 +25,19 @@ export class ForumService {
   }
 
   createPost(title: string, content: string): Observable<Object[]> {
-
-    console.log("createPost ForumService");
-
     const postData: Object = {
       title: title,
       content: content,
     };
-    console.log(postData);
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     return this.http.post<Object[]>(this.apiUrl, postData, { headers });
   }
 
   createComment(postId: number, text: string): Observable<Object[]> {
-
-    console.log("createComment ForumService");
-
     const commentData: Object = {
       text: text
     };
-    console.log(commentData);
     const url = `${this.apiUrl}/${postId}/comments`;
-    console.log(url);
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     return this.http.post<Object[]>(url, commentData, { headers });
   }

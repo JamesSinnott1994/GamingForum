@@ -31,7 +31,6 @@ export class HomeComponent {
   }
 
   createPost() {
-    console.log("createPost HomeComponent");
     this.forumService.createPost(
       this.applyForm.value.title ?? '',
       this.applyForm.value.content ?? '',
@@ -59,6 +58,7 @@ clearMessage() {
 
   setTimeout(() => {
     this.postResponseMessage = '';
+    this.ngOnInit();
   }, 7000); // fully clear after 10 seconds
 }
 
