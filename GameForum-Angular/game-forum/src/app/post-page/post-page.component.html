@@ -10,7 +10,7 @@
     </section>
     <section>
         <h2>Add your own Comment</h2>
-        <form [formGroup]="applyForm" (submit)="createComment()">
+        <form [formGroup]="applyForm" (submit)="createComment()" id="commentForm">
             <div class="form-group">
                 <label for="text">Text</label><br>
                 <textarea id="text" name="text" formControlName="text"></textarea>

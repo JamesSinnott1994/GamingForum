@@ -1,6 +1,24 @@
 #homepage {
     width: 80%;
-    margin: 0 auto;
+    margin: 0 auto; 
+    margin-bottom: 1em;
+}
+
+a {
+  text-decoration: none;
+  color: #ddd;
+}
+
+#homepage button {
+    background-color: #18752A;
+    border: 1px solid #ddd;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    color: #ddd;
+}
+
+#homepage button:hover {
+    background-color: #1ba737;
 }
 
 .success-message {

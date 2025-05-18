@@ -54,11 +54,11 @@ clearMessage() {
 
   setTimeout(() => {
     this.messageVisible = false;
+    this.ngOnInit();
   }, 4000); // fade out after 8 seconds
 
   setTimeout(() => {
     this.postResponseMessage = '';
-    this.ngOnInit();
   }, 7000); // fully clear after 10 seconds
 }
 

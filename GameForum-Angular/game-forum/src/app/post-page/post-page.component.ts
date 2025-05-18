@@ -68,11 +68,11 @@ export class PostPageComponent {
 
     setTimeout(() => {
       this.messageVisible = false;
+      this.ngOnInit();
     }, 4000); // fade out after 8 seconds
 
     setTimeout(() => {
       this.responseMessage = '';
-      this.ngOnInit();
     }, 7000); // fully clear after 10 seconds
   }
 }
